@@ -1,0 +1,14 @@
+fastapi         
+uvicorn          
+python-dotenv    
+groq             
+
+sentence-transformers   
+hdbscan                 
+umap-learn             
+scikit-learn            
+pandas                 
+
+python-multipart   
+
+response
