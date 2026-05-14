@@ -23,7 +23,7 @@ Paste logs. Get clusters. Find the root cause.
 
 ## Demo
 
-> [![demo](images/input.gif)](https://youtu.be/looGVj0RKUM)
+> [![demo](images/input.png)](https://youtu.be/looGVj0RKUM)
 > *Click to watch the demo*
 
 ---
