@@ -19,6 +19,7 @@ Paste logs. Get clusters. Find the root cause.
 ## Live demo
 
 🔗 [https://huggingface.co/spaces/Ilaa-1505/Error-Clustering-System](https://huggingface.co/spaces/Ilaa-1505/Error-Clustering-System)
+> If the Space is sleeping, it may take ~30 seconds to wake up on first visit.
 
 ---
 
