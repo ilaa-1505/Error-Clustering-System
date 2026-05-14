@@ -11,20 +11,21 @@ Paste logs. Get clusters. Find the root cause.
 ![UMAP](https://img.shields.io/badge/UMAP-2D--projection-teal?style=flat-square)
 ![LLM](https://img.shields.io/badge/LLM-Llama_3.1_via_Groq-7B68EE?style=flat-square)
 ![FastAPI](https://img.shields.io/badge/FastAPI-backend-009688?style=flat-square)
+![Hugging Face](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-FFD21E?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 
 ---
 
 ## Live demo
 
-🔗 [Try it here](https://huggingface.co/spaces/Ilaa-1505/Error-Clustering-System)
+🔗 [https://huggingface.co/spaces/Ilaa-1505/Error-Clustering-System](https://huggingface.co/spaces/Ilaa-1505/Error-Clustering-System)
 
 ---
 
 ## Demo
 
-> [![demo](images/input.png)](https://youtu.be/looGVj0RKUM)
-> *Click to watch the demo*
+> [![Demo](images/error_cluster_demo.gif)](https://youtu.be/i123QpY4sto)
+> *Click the GIF to view the full demo video*
 
 ---
 
@@ -75,14 +76,6 @@ Before clustering, embeddings are reduced to 2D using UMAP with `n_neighbors=15`
 
 ---
 
-### HDBSCAN clustering
-
-HDBSCAN runs on the 2D UMAP coordinates using euclidean distance. Points that don't belong to any cluster get label `-1` and are tracked separately as anomalies. No need to specify the number of clusters upfront.
-
-> ![cluster map](images/image-2.png)
-
----
-
 ### Cluster size tuning
 
 The tune endpoint sweeps `min_cluster_size` across `[2, 3, 5, 8, 10, 15, 20, 30]` and scores each result with the silhouette score:
@@ -94,6 +87,22 @@ s(i) = ( b(i) - a(i) ) / max( a(i), b(i) )
 `a(i)` is the mean distance from a point to everything else in its cluster. `b(i)` is the mean distance to all points in the nearest other cluster. The best size is the one with the highest silhouette and fewest noise points.
 
 > ![cluster size tuning](images/image-1.png)
+
+---
+
+### HDBSCAN clustering
+
+HDBSCAN runs on the 2D UMAP coordinates using euclidean distance. Points that don't belong to any cluster get label `-1` and are tracked separately as anomalies. No need to specify the number of clusters upfront.
+
+> ![cluster map](images/image-2.png)
+
+---
+
+### Timeline
+
+Error frequency per cluster is bucketed over time. The bucket size adapts to the log window: 5 minutes for under an hour, 15 minutes for under 6 hours, 60 minutes for under a day. The chart shows when each cluster peaks and whether they overlap in time.
+
+> ![timeline](images/image-3.png)
 
 ---
 
@@ -115,14 +124,6 @@ A second LLM call takes the full cluster summary and generates a structured inci
 
 ---
 
-### Timeline
-
-Error frequency per cluster is bucketed over time. The bucket size adapts to the log window: 5 minutes for under an hour, 15 minutes for under 6 hours, 60 minutes for under a day. The chart shows when each cluster peaks and whether they overlap in time.
-
-> ![timeline](images/image-3.png)
-
----
-
 ## Pipeline
 
 ```
@@ -131,11 +132,11 @@ input
   error filtering + MD5 dedup
   sentence-transformer embedding (all-MiniLM-L6-v2, batch size 64)
   UMAP 2D reduction (n_neighbors=15, min_dist=0.1, random_state=42)
-  HDBSCAN clustering (euclidean, prediction_data=True)
   silhouette sweep (min_cluster_size 2 through 30)
+  HDBSCAN clustering (euclidean, prediction_data=True)
+  adaptive timeline bucketing by cluster
   Llama 3.1 8B via Groq: label + severity + root cause per cluster
   Llama 3.1 8B via Groq: full incident report
-  adaptive timeline bucketing by cluster
 ```
 
 ---
