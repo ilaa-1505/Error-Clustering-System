@@ -24,7 +24,8 @@ Paste logs. Get clusters. Find the root cause.
 
 ## Demo
 
-> [![Demo](images/error_cluster_demo.gif)](https://youtu.be/i123QpY4sto)
+[![Demo](images/error_cluster_demo.gif)](https://youtu.be/i123QpY4sto)
+
 > *Click the GIF to view the full demo video*
 
 ---
