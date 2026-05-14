@@ -19,7 +19,7 @@ def numpy_to_python(obj):
         return obj.tolist()
     return obj
 
-router = APIRouter(prefix="/cluster", tags=["clustering"])
+router = APIRouter(tags=["clustering"])
 
 parser = LogParser()
 embedder = Embedder()

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const API = 'http://localhost:8000';
+const API = '';
 
 export default function ScatterPlot({ clusters, anomalies }) {
     console.log('ScatterPlot render:', typeof clusters, clusters);
@@ -26,7 +26,7 @@ export function useCluster() {
         setResult(null);
 
         try {
-            const response = await axios.post(`${API}/cluster/tune`, {
+            const response = await axios.post(`/api/cluster/tune`, {
                 logs,
                 min_cluster_size: 2,
             });
@@ -52,7 +52,7 @@ export function useCluster() {
         setResult(null);
 
         try {
-            const response = await axios.post(`${API}/cluster/run`, {
+            const response = await axios.post(`/api/cluster/run`, {
                 logs,
                 min_cluster_size: bestSize,
             });

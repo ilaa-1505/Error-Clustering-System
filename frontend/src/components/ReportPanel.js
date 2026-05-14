@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const API = 'http://localhost:8000';
+const API = '';
 
 const SEVERITY_COLORS = {
     Critical: 'var(--critical)',
@@ -19,7 +19,7 @@ export default function ReportPanel({ clusters, anomalies, stats }) {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.post(`${API}/cluster/report`, {
+            const response = await axios.post(`/api/cluster/report`, {
                 clusters, anomalies, stats
             });
             setReport(response.data);
