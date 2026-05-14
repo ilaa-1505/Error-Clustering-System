@@ -17,13 +17,13 @@ Paste logs. Get clusters. Find the root cause.
 
 ## Live demo
 
-🔗 [Try it here](https://your-demo-link-here)
+🔗 [Try it here](https://huggingface.co/spaces/Ilaa-1505/Error-Clustering-System)
 
 ---
 
 ## Demo
 
-> [![demo](images/demo.gif)](https://your-demo-link-here)
+> [![demo](images/input.gif)](https://youtu.be/looGVj0RKUM)
 > *Click to watch the demo*
 
 ---
